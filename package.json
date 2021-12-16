@@ -1,0 +1,23 @@
+{
+  "name": "resource-mgmt-system",
+  "version": "1.0.0",
+  "description": "resource management system that keeps track of event history",
+  "main": "src/js/application.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "lint": "eslint src/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KSEA-Seattle-IT/resource-mgmt-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KSEA-Seattle-IT/resource-mgmt-system/issues"
+  },
+  "homepage": "https://github.com/KSEA-Seattle-IT/resource-mgmt-system#readme",
+  "devDependencies": {
+    "eslint": "^8.4.1"
+  }
+}
