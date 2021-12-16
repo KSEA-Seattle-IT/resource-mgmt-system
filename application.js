@@ -1,7 +1,7 @@
 //Load HTTP module
 const http = require("http");
-const hostname = '127.0.0.1';
-const port = 3000;
+const HOST = '127.0.0.1';
+const PORT = 8080;
 
 //Create HTTP server and listen on port 3000 for requests
 const server = http.createServer((req, res) => {
@@ -13,6 +13,6 @@ const server = http.createServer((req, res) => {
 });
 
 //listen for request on port 3000, and as a callback function have the port listened on logged
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(PORT, HOST, () => {
+  console.log(`Server running at http://${HOST}:${PORT}/`);
 });
