@@ -2,10 +2,10 @@
   "name": "resource-mgmt-system",
   "version": "1.0.0",
   "description": "resource management system that keeps track of event history",
-  "main": "src/js/application.js",
+  "main": "application.js",
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1",
-    "lint": "eslint src/js"
+    "start": "node application.js",
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
   "repository": {
     "type": "git",
