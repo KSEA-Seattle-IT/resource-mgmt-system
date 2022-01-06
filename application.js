@@ -1,3 +1,7 @@
+//AWS sdk
+const AWS = require('aws-sdk')
+
+
 //Load HTTP module
 const http = require("http");
 const HOST = '127.0.0.1';
