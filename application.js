@@ -1,32 +1,57 @@
-//aws-sdk library will used to view image from s3 bucket
-const AWS = require('aws-sdk')
-//Load HTTP module
-const http = require("http");
+const express = require('express')
+const app = express();
 const HOST = '127.0.0.1';
 const PORT = 8080;
-require("dotenv").config();
+//aws-sdk library will used to view image from s3 bucket
+const aws = require('aws-sdk');
+require('dotenv').config()
 
-//Create HTTP server and listen on port 3000 for requests
-const server = http.createServer((req, res) => {
+//load aws credentials from .env file
+const accessKeyId = process.env.AWS_ACCESS_KEY
+const secretAccessKey = process.env.AWS_SECRET_KEY
+const bucketName = process.env.AWS_BUCKET_NAME
+const region = process.env.AWS_BUCKET_REGION
 
-  //Set the response HTTP header with HTTP status and Content type
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('KSEAIT - Resource Managment\n');
-});
+app.get('/', (req, res) => {
 
-//listen for request on port 3000, and as a callback function have the port listened on logged
-server.listen(PORT, HOST, () => {
-  console.log(`Server running at http://${HOST}:${PORT}/`);
-});
+  aws.config.update({
+    accessKeyId,
+    secretAccessKey,
+    region,
+  });
+
+  const s3 = new aws.S3();
+
+  async function viewImage() {
+    const data = s3.getObject(
+      {
+        Bucket: bucketName,
+        Key: 'event-2021/Slide2-1024x576.jpeg',
+      }
+
+    ).promise();
+    return data;
+  }
+
+  viewImage()
+    .then((img) => {
+      let image = "<img src='data:image/jpeg;base64," + encode(img.Body) + "'" + "/>";
+      let startHTML = "<html><body></body>";
+      let endHTML = "</body></html>";
+      let html = startHTML + image + endHTML;
+      res.send(html)
+    }).catch((e) => {
+      res.send(e)
+    })
 
 
-const s3 = new AWS.S3 ({
-  accessKeyId:process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY
+  function encode(data) {
+    let buf = Buffer.from(data);
+    let base64 = buf.toString('base64');
+    return base64
+  }
 })
 
-// view the photo albums that exist in the bucket.
-function viewImages() {
-
-}
+app.listen(PORT, () => {
+  console.log(`Web Server running at http://${HOST}:${PORT}/`);
+});
