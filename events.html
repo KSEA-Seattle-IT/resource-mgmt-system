@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <title>events</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="./s3_images.js"></script>
+</head>
+
+<body>
+    <div style="margin:100px;">
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="https://media-exp1.licdn.com/dms/image/C560BAQG42CKDhbdOxA/company-logo_200_200/0/1519906870663?e=2159024400&v=beta&t=sog_m7FfVSYYyW7iDcc1vPWjHmqwd6DD6V08duxGTng"
+                        width="35" style="display: inline-block">
+                </a>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/events">Events</a>
+                    </li>
+                    <li>
+                        <a href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="jumbotron" style="padding:40px;">
+            <h3>Example: KSEA Mathematic and Science Competition</h3>
+            <p>Event description: .......</p>
+            <p>Date: 02/28/2022</p>
+            <p>Location: Seattle, WA</p>
+            <p>Gallery</p>
+            <button type="button" onclick="show()" id="btnID">View image</button>
+            <img id="image" src="" />
+            <script>
+                function show() {
+
+                    var image = document.getElementById("image");
+                    image.src = "/images/event-2021/Slide2-1024x576.jpeg"
+                    for (var i = 0; i < image.length; i++) {
+                        image[i].style.flex = "50%";
+                    }
+                    document.getElementById("btnID").style.display = "block";
+                }
+            </script>
+
+        </div>
+    </div>
+</body>
+
+</html>
